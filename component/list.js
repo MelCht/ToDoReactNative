@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import Delete from './deleteModal';
 
@@ -47,14 +47,13 @@ const sampleGoals = [
   "Changer la litière",
   "Jouer avec le chaton",
   "Dépoiler les plaids",
-  "Donner des croquettes",
+  "Nourrir les chats",
   "Laver les gamelles",
   "Dépoiler les vêtements",
 ];
 
 export default function ToDoList(props) { 
 
-const [modalVisible, setModalVisible] = useState(false);
 const [goals, setGoals] = useState([...sampleGoals]);
 const [newGoal, setNewGoal] = useState("");
     
@@ -97,11 +96,12 @@ return (
         value={newGoal}
         onChangeText={text => setNewGoal(text)}
       />
-      <TouchableOpacity
-      style={styles.add}
-      onPress={handleAddGoal}>
+      <Pressable
+        android_ripple={{color: "#C58552", radius: 28}}
+        style={styles.add}
+        onPress={handleAddGoal}>
         <Text style={styles.addText}>Ajouter</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   </View>
 )

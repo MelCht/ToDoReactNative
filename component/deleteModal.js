@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#C58552',
   },
   buttonCloseNo: {
-    backgroundColor: 'green',
+    backgroundColor: '#E6F9EF',
   },
   buttonCloseYes: {
-    backgroundColor: 'red',
+    backgroundColor: '#F28081',
   },
   buttonRow: {
     display: 'flex',
@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  textStyleDelete: {
+    color: 'black',
   },
   modalText: {
     marginBottom: 15,
@@ -59,12 +62,12 @@ const Delete = (props) => {
               <Pressable
                 style={[styles.button, styles.buttonCloseNo]}
                 onPress={() => setModalVisible(!modalVisible)}>
-                <Text style={styles.textStyle}>Non</Text>
+                <Text style={styles.textStyleDelete}>Non</Text>
               </Pressable>
               <Pressable
                 style={[styles.button, styles.buttonCloseYes]}
                 onPress={() => {handleDeleteGoal(index); setModalVisible(!modalVisible)}}>
-                <Text style={styles.textStyle}>Oui</Text>
+                <Text style={styles.textStyleDelete}>Oui</Text>
               </Pressable>
             </View>
           </View>
