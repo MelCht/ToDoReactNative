@@ -6,24 +6,28 @@ export default function App() {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
-      // alignItems: 'center',
       justifyContent: 'center',
     },
 
     title: {
-      color: 'purple', 
-      fontWeight: 'normal',
+      color: '#C58552', 
+      fontWeight: 'bold',
       textAlign: 'center',
+      fontSize: 40,
       marginBottom: '5%'
     },
+
+    main: {
+      height: '100%', 
+      paddingTop: '25%'
+    }
   });
  
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground source={require('./assets/backgroundRainbow.jpg')} resizeMode='stretch'>
-        <View style={{height: '100%', paddingTop: '45%'}}>
-          <Text style={styles.title}>Faisons une <Text style={{fontWeight: 'bold'}}>app</Text> en React Native!</Text>
+      <ImageBackground source={require('./assets/background.webp')} resizeMode='stretch'>
+        <View style={styles.main}>
+          <Text style={styles.title}>TO DO LIST</Text>
           <StatusBar style="auto" />
           <ToDoList></ToDoList>
         </View>

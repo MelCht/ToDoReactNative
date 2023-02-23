@@ -1,28 +1,30 @@
 import React, {useState} from 'react';
-import { Modal, StyleSheet, Text, Pressable, View} from 'react-native';
+import { Modal, StyleSheet, Text, Pressable, View, ImageBackground} from 'react-native';
 
 const styles = StyleSheet.create({
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#C58552',
     borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    elevation: 5,
+    padding: 75,
   },
   button: {
     borderRadius: 50,
-    padding: 10,
-    elevation: 2,
+    padding: 5,
   },
-  buttonOpen: {
-    backgroundColor: 'pink',
+  buttonDelete: {
+    backgroundColor: '#C58552',
   },
   buttonCloseNo: {
     backgroundColor: 'green',
   },
   buttonCloseYes: {
     backgroundColor: 'red',
+  },
+  buttonRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   textStyle: {
     color: 'white',
@@ -32,6 +34,8 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    color: 'white',
+    fontSize: 25,
   },
 });
 
@@ -51,21 +55,23 @@ const Delete = (props) => {
         <View >
           <View style={styles.modalView}>
             <Text style={styles.modalText}>On supprime?</Text>
-            <Pressable
-              style={[styles.button, styles.buttonCloseNo]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Non</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonCloseYes]}
-              onPress={() => {handleDeleteGoal(index); setModalVisible(!modalVisible)}}>
-              <Text style={styles.textStyle}>Oui</Text>
-            </Pressable>
+            <View style={styles.buttonRow}>
+              <Pressable
+                style={[styles.button, styles.buttonCloseNo]}
+                onPress={() => setModalVisible(!modalVisible)}>
+                <Text style={styles.textStyle}>Non</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonCloseYes]}
+                onPress={() => {handleDeleteGoal(index); setModalVisible(!modalVisible)}}>
+                <Text style={styles.textStyle}>Oui</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
       <Pressable
-        style={[styles.button, styles.buttonOpen]}
+        style={[styles.button, styles.buttonDelete]}
         onPress={() => setModalVisible(true)}>
         <Text style={styles.textStyle}>X</Text>
       </Pressable>
