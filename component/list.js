@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, FlatList, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import Delete from './deleteModal';
+import Modify from './modifyModal';
 
 const styles = StyleSheet.create({
 
@@ -64,11 +65,24 @@ const handleAddGoal = () => {
   }
 };
 
-const handleDeleteGoal = (index) => {
+const handleDeleteGoal = (index, item) => {
   const updatedGoals = [...goals];
   updatedGoals.splice(index, 1);
   setGoals(updatedGoals);
 };
+
+  const handleReplaceGoal = (index, newGoal, prevGoals) => {
+    setGoals((prevGoals) => {
+      const updatedGoals = prevGoals.map((goal, i) => {
+        if (i === index) {
+          return newGoal;
+        } else {
+          return goal;
+        }
+      });
+      return updatedGoals;
+    });
+  };
     
 return (
   <View>
@@ -82,9 +96,14 @@ return (
       <View style={styles.flatlist}>
           <Text key={index} style={styles.item}>{item}</Text>
         <Delete 
-        handleDeleteGoal={handleDeleteGoal} 
-        index={index}
-      />
+          handleDeleteGoal={handleDeleteGoal} 
+          index={index}
+        />
+        <Modify
+          handleReplaceGoal={handleReplaceGoal}
+          index={index}
+          initialValue={item}
+        />
       </View>
     </>
   )}    

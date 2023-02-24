@@ -55,7 +55,7 @@ const Delete = (props) => {
         onRequestClose={() => {
           setModalVisible(!modalVisible);
         }}>
-        <View >
+        <View>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>On supprime?</Text>
             <View style={styles.buttonRow}>
