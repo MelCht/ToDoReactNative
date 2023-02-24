@@ -60,7 +60,7 @@ const Modify = (props) => {
           <View style={styles.modalBox}>
             <TextInput
               style={styles.input}
-              placeholder="Modifier un objectif"
+              placeholder={newGoal}
               value={newGoal}
               onChangeText={text => setNewGoal(text)}
             />
