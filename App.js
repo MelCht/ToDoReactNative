@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import ToDoList from './component/list';
-import { StyleSheet, Text, View, SafeAreaView, ImageBackground} from 'react-native';
+import { StyleSheet, Text, View,  ImageBackground} from 'react-native';
 
 export default function App() {
   const styles = StyleSheet.create({
@@ -24,7 +24,7 @@ export default function App() {
   });
  
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ImageBackground source={require('./assets/background.webp')} resizeMode='stretch'>
         <View style={styles.main}>
           <Text style={styles.title}>TO DO LIST</Text>
@@ -32,7 +32,7 @@ export default function App() {
           <ToDoList></ToDoList>
         </View>
       </ImageBackground>
-    </SafeAreaView>
+    </View>
 
   );
 }

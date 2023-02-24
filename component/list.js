@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TextInput, FlatList, Pressable } from 'react-na
 import React, { useState } from 'react';
 import Delete from './deleteModal';
 import Modify from './modifyModal';
+import { KeyboardAvoidingView } from 'react-native-web';
 
 const styles = StyleSheet.create({
 
@@ -32,11 +33,14 @@ const styles = StyleSheet.create({
     borderColor: '#C58552', 
     borderWidth: 3, 
     borderRadius: 25, 
-    marginRight: '2%'
+    marginRight: '2%',
   },
 
   addText: {
     paddingTop: 5,
+  },
+  scroll: {
+    height: "75%",
   }
 });
   
@@ -71,43 +75,42 @@ const handleDeleteGoal = (index, item) => {
   setGoals(updatedGoals);
 };
 
-  const handleReplaceGoal = (index, newGoal, prevGoals) => {
-    setGoals((prevGoals) => {
-      const updatedGoals = prevGoals.map((goal, i) => {
-        if (i === index) {
-          return newGoal;
-        } else {
-          return goal;
-        }
-      });
-      return updatedGoals;
-    });
-  };
+const handleReplaceGoal = (index, modifiedGoal) => {
+  const modif = goals.map((goal, indexMap) => (
+    (indexMap == index) ? 
+    modifiedGoal
+    : goal
+    ))
+    setGoals(modif)
+  }
+
+
     
 return (
   <View>
-  <FlatList 
-  contentContainerStyle
-  data={goals} 
-  keyExtractor={(item, index) => index.toString()}
-  renderItem={({ item, index }) => 
-  ( 
-    <> 
-      <View style={styles.flatlist}>
-          <Text key={index} style={styles.item}>{item}</Text>
-        <Delete 
-          handleDeleteGoal={handleDeleteGoal} 
-          index={index}
-        />
-        <Modify
-          handleReplaceGoal={handleReplaceGoal}
-          index={index}
-          initialValue={item}
-        />
+    <View style={styles.scroll}>
+      <FlatList 
+      data={goals} 
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item, index }) => 
+      ( 
+        <> 
+          <View style={styles.flatlist}>
+              <Text key={index} style={styles.item}>{item}</Text>
+            <Delete 
+              handleDeleteGoal={handleDeleteGoal} 
+              index={index}
+            />
+            <Modify
+              handleReplaceGoal={handleReplaceGoal}
+              index={index}
+              initialValue={item}
+            />
+          </View>
+        </>
+      )}    
+      />
       </View>
-    </>
-  )}    
-  />
     <View style={styles.row}>
       <TextInput
         style={styles.add}

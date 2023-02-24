@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderRadius: 25,
     marginBottom: '2%',
-    paddingLeft: 15,
+    paddingLeft: 5,
   },
   modifyButton: {
     backgroundColor: '#C58552',
@@ -42,9 +42,9 @@ const styles = StyleSheet.create({
 })
 
 const Modify = (props) => {
-  const { handleReplaceGoal, index, initialValue } = props;
+  const { handleReplaceGoal, index, item, initialValue } = props;
   const [modalVisible, setModalVisible] = useState(false);
-  const [newGoal, setNewGoal] = useState(initialValue); 
+  const [modifiedGoal, setModifiedGoal] = useState(initialValue); 
 
   return (
     <View>
@@ -60,9 +60,8 @@ const Modify = (props) => {
           <View style={styles.modalBox}>
             <TextInput
               style={styles.input}
-              placeholder={newGoal}
-              value={newGoal}
-              onChangeText={text => setNewGoal(text)}
+              value={modifiedGoal}
+              onChangeText={text => setModifiedGoal(text)}
             />
             <View style={styles.buttonRow}>
               <TouchableOpacity
@@ -73,7 +72,7 @@ const Modify = (props) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.buttons}
-                onPress={() => {handleReplaceGoal(index); setModalVisible(!modalVisible)}}
+                onPress={() => {handleReplaceGoal(index, modifiedGoal); setModalVisible(!modalVisible)}}
               >
                 <Text>Modifier</Text>
               </TouchableOpacity>
