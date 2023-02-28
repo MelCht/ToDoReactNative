@@ -1,5 +1,5 @@
 import { StyleSheet, View, Modal, TextInput, TouchableOpacity, Text } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const styles = StyleSheet.create({
   modalBox: {
@@ -42,9 +42,13 @@ const styles = StyleSheet.create({
 })
 
 const Modify = (props) => {
-  const { handleReplaceGoal, index, item, initialValue } = props;
+  const { handleReplaceGoal, index, initialValue } = props;
   const [modalVisible, setModalVisible] = useState(false);
   const [modifiedGoal, setModifiedGoal] = useState(initialValue); 
+
+  useEffect(() => {
+    setModifiedGoal( initialValue )
+  }, [initialValue])  
 
   return (
     <View>
